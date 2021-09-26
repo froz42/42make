@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile.template                                  :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:01:22 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:12:09 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./src
 
-SRCS			=
+SRCS			= test_42.cpp test_iterator.cpp test_map.cpp test_pair.cpp test_set.cpp test_stack.cpp test_vector.cpp
 
 MAIN			= main.cpp
 
@@ -53,9 +53,6 @@ ERROR_COLOR = \033[0;31m
 WARN_COLOR  = \033[0;33m
 NO_COLOR    = \033[m
 
-OK_STRING    = "[OK]"
-ERROR_STRING = "[KO]"
-WARN_STRING  = "[WARN]"
 COM_STRING   = "compiling"
 
 ifeq ($(OS),Windows_NT) 
@@ -81,11 +78,11 @@ define run_and_test
 printf "%b%-46b" "$(COM_COLOR)$(COM_STRING) " "$(OBJ_COLOR)$(@F)$(NO_COLOR)"; \
 $(RUN_CMD); \
 if [ $$RESULT -ne 0 ]; then \
-	printf "%b\n" "$(ERROR_COLOR)[KO]$(NO_COLOR)"; \
+	printf "%b\n" "$(ERROR_COLOR)[✖]$(NO_COLOR)"; \
 elif [ -s $@.log ]; then \
-	printf "%b\n" "$(WARN_COLOR)[WARN]$(NO_COLOR)"; \
+	printf "%b\n" "$(WARN_COLOR)[⚠]$(NO_COLOR)"; \
 else  \
-	printf "%b\n" "$(OK_COLOR)[OK]$(NO_COLOR)"; \
+	printf "%b\n" "$(OK_COLOR)[✓]$(NO_COLOR)"; \
 fi; \
 cat $@.log; \
 rm -f $@.log; \
@@ -121,9 +118,9 @@ define draw_bar
 	printf "$(OBJ_COLOR)[$(NO_COLOR)"; \
 	for ((i=0; i<48; i++)); do \
 		if [ $$i -lt $$RES ]; then \
-			printf "$(OK_COLOR)#$(NO_COLOR)"; \
+			printf "$(OK_COLOR)█$(NO_COLOR)"; \
 		else \
-			printf "$(COM_COLOR)-$(NO_COLOR)"; \
+			printf "$(COM_COLOR)▒$(NO_COLOR)"; \
 		fi; \
 	done; \
 	printf "$(OBJ_COLOR)]$(NO_COLOR)"; \
