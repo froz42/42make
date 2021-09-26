@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:15:22 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:17:41 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./src
 
-SRCS			= test_42.cpp test_iterator.cpp test_map.cpp test_pair.cpp test_set.cpp test_stack.cpp test_vector.cpp
+SRCS			= test_iterator.cpp test_map.cpp test_pair.cpp test_set.cpp test_stack.cpp test_vector.cpp
 
 MAIN			= main.cpp
 
@@ -78,6 +78,7 @@ define run_and_test
 printf "%b%-46b" "$(COM_COLOR)$(COM_STRING) " "$(OBJ_COLOR)$(@F)$(NO_COLOR)"; \
 $(RUN_CMD); \
 if [ $$RESULT -ne 0 ]; then \
+	clear; \
 	printf "%b\n" "$(ERROR_COLOR)[✖]$(NO_COLOR)"; \
 elif [ -s $@.log ]; then \
 	printf "%b\n" "$(WARN_COLOR)[⚠]$(NO_COLOR)"; \
