@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:29:58 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:33:57 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ DATE	= 26/09/2021
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
-
 SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./src
@@ -36,6 +35,8 @@ MAIN			= main.cpp
 ################################################################################
 #                                  Makefile  objs                              #
 ################################################################################
+
+SHELL := /bin/bash
 
 
 OBJS				= $(addprefix objs/, ${SRCS:.cpp=.o})
@@ -200,11 +201,11 @@ objs/%.o: 	$(SRCS_PATH)/%.cpp
 
 clean:		header
 			@rm -rf objs objs_tests
-			@printf "%-53b%b" "$(COM_COLOR)clean:" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"
+			@printf "%-53b%b" "$(COM_COLOR)clean:" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
 
 fclean:		header clean
 			@rm -rf $(TEST_NAME)
-			@printf "%-53b%b" "$(COM_COLOR)fclean:" "$(OK_COLOR)$(OK_STRING)$(NO_COLOR)\n"
+			@printf "%-53b%b" "$(COM_COLOR)fclean:" "$(OK_COLOR)[✓]$(NO_COLOR)\n"
 
 re:			fclean all
 
