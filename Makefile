@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 17:02:00 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 17:52:56 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./src
 
-SRCS			= test_iterator.cpp test_map.cpp test_pair.cpp test_set.cpp test_stack.cpp test_vector.cpp
+SRCS			= test_iterator.cpp test_map.cpp test_pair.cpp \
+					test_set.cpp test_stack.cpp test_vector.cpp
 
 MAIN			= main.cpp
 
