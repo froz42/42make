@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 17:52:56 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 18:00:40 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,9 @@ DATE	= 26/09/2021
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
 ################################################################################
+
+FILE_EXTENSION	= .cpp
+
 SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./src
@@ -40,8 +43,8 @@ MAIN			= main.cpp
 SHELL := /bin/bash
 
 
-OBJS				= $(addprefix objs/, ${SRCS:.cpp=.o})
-OBJ_MAIN			= $(addprefix objs/, ${MAIN:.cpp=.o})
+OBJS				= $(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.o})
+OBJ_MAIN			= $(addprefix objs/, ${MAIN:$(FILE_EXTENSION)=.o})
 
 
 ################################################################################
@@ -99,7 +102,7 @@ define save_files_changed
 	TO_COMPILE=`echo $$FILE_CPP | wc -w`; \
 	for FILE in $$FILE_CPP; do \
 		for OBJ in $$FILE_OBJ; do \
-			if [ $${FILE%.cpp} = $${OBJ%.o} ]; then \
+			if [ $${FILE%$(FILE_EXTENSION)} = $${OBJ%.o} ]; then \
 				if [ $(SRCS_PATH)/$$FILE -ot objs/$$OBJ ]; then \
 					((TO_COMPILE=$$TO_COMPILE-1)); \
 					break; \
@@ -196,7 +199,7 @@ $(NAME):	${OBJS} ${OBJ_MAIN}
 setup:
 	@$(call save_files_changed)
 
-objs/%.o: 	$(SRCS_PATH)/%.cpp
+objs/%.o: 	$(SRCS_PATH)/%$(FILE_EXTENSION)
 			@mkdir -p $(dir $@)
 			@$(call display_progress_bar)
 			@$(call run_and_test,$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDE_PATH))
