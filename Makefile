@@ -6,7 +6,7 @@
 #    By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 18:20:31 by c3b5aw           ###   ########.fr        #
+#    Updated: 2021/09/26 18:21:26 by c3b5aw           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ CC 		= clang++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 AUTHOR	= $(shell git log --format='%aN' | sort -u | head -c -1 | sed -z 's/\n/, /g')
 DATE	= $(shell git log -1 --date=format:"%Y/%m/%d %T" --format="%ad")
+COMMIT_HASH	= $(shell git rev-parse --short HEAD)
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -184,7 +185,7 @@ header:
 	@echo "     \___  |./ /___| |  | | (_| |   <  __/"
 	@echo "         |_/\_____/\_|  |_/\__,_|_|\_\___| v2"
 	@echo
-	@printf "%b" "$(OBJ_COLOR)Name:	$(WARN_COLOR)$(NAME)\n"
+	@printf "%b" "$(OBJ_COLOR)Name:	$(WARN_COLOR)$(NAME)@$(COMMIT_HASH)\n"
 	@printf "%b" "$(OBJ_COLOR)Author:	$(WARN_COLOR)$(AUTHOR)\n"
 	@printf "%b" "$(OBJ_COLOR)Date: 	$(WARN_COLOR)$(DATE)\n\033[m"
 	@printf "%b" "$(OBJ_COLOR)CC: 	$(WARN_COLOR)$(CC)\n\033[m"
