@@ -9,7 +9,7 @@ Just messing with makefiles
 
 And configure these field:
 
-![image](https://user-images.githubusercontent.com/54767855/134815006-c2d61993-db35-40ff-9f28-5bbb7a51f4b5.png)
+![image](https://user-images.githubusercontent.com/54767855/134815283-4f02c62b-a05d-4c2a-a13e-febe11588512.png)
 
 ## if you want to list all .cpp file
 
