@@ -11,7 +11,7 @@ And configure these field:
 
 ![image](https://user-images.githubusercontent.com/54767855/134815283-4f02c62b-a05d-4c2a-a13e-febe11588512.png)
 
-## if you have tty error on worflows
+## if you have tty error on workflows
 	add NOVISU=1 as argument to your makefile:
 
 	make NOVISU=1 
