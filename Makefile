@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:20:05 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:28:06 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,12 +117,14 @@ define draw_bar
 	RES=`echo "scale=2; $$FILE_DONE/$$FILE_TOTAL*48" | bc`; \
 	RES=`echo $${RES%%.*}`; \
 	printf "$(OBJ_COLOR)[$(NO_COLOR)"; \
-	for ((i=0; i<48; i++)); do \
+	i=0; \
+	while [ $$i -lt 48 ]; do \
 		if [ $$i -lt $$RES ]; then \
 			printf "$(OK_COLOR)█$(NO_COLOR)"; \
 		else \
 			printf "$(COM_COLOR)▒$(NO_COLOR)"; \
 		fi; \
+		((i=$$i+1)); \
 	done; \
 	printf "$(OBJ_COLOR)]$(NO_COLOR)"; \
 	printf " ($(COM_COLOR)$$FILE_DONE$(NO_COLOR)/$(COM_COLOR)$$FILE_TOTAL$(NO_COLOR))"; \
