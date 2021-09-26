@@ -6,7 +6,7 @@
 #    By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 18:20:15 by c3b5aw           ###   ########.fr        #
+#    Updated: 2021/09/26 18:20:31 by c3b5aw           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	= $(shell basename `git rev-parse --show-toplevel`)
 CC 		= clang++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 AUTHOR	= $(shell git log --format='%aN' | sort -u | head -c -1 | sed -z 's/\n/, /g')
-DATE	= 26/09/2021
+DATE	= $(shell git log -1 --date=format:"%Y/%m/%d %T" --format="%ad")
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
