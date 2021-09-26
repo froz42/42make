@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:12:09 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:15:22 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,7 @@ define draw_bar
 	done; \
 	printf "$(OBJ_COLOR)]$(NO_COLOR)"; \
 	printf " ($(COM_COLOR)$$FILE_DONE$(NO_COLOR)/$(COM_COLOR)$$FILE_TOTAL$(NO_COLOR))"; \
-	echo -n " "; \
+	printf " "; \
 	((FILE_DONE=$$FILE_DONE+1)); \
 	echo $$FILE_DONE/$$FILE_TOTAL > .files_changed;
 endef
@@ -137,7 +137,7 @@ define display_progress_bar
 	new_line=0; \
 	tput sc; \
 	for ((i=0; i<60; i++)); do \
-		echo -n " "; \
+		printf " "; \
 	done; \
 	tput rc; \
 	if [ $$line -gt $$max_line ]; then \
