@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:28:06 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:29:58 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,8 +139,10 @@ define display_progress_bar
 	((max_line=$$max_line-2));\
 	new_line=0; \
 	tput sc; \
-	for ((i=0; i<60; i++)); do \
+	i=0; \
+	while [ $$i -lt 60 ]; do \
 		printf " "; \
+		((i=$$i+1)); \
 	done; \
 	tput rc; \
 	if [ $$line -gt $$max_line ]; then \
