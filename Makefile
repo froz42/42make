@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 16:17:41 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 16:20:05 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,8 +78,8 @@ define run_and_test
 printf "%b%-46b" "$(COM_COLOR)$(COM_STRING) " "$(OBJ_COLOR)$(@F)$(NO_COLOR)"; \
 $(RUN_CMD); \
 if [ $$RESULT -ne 0 ]; then \
-	clear; \
 	printf "%b\n" "$(ERROR_COLOR)[✖]$(NO_COLOR)"; \
+	clear; \
 elif [ -s $@.log ]; then \
 	printf "%b\n" "$(WARN_COLOR)[⚠]$(NO_COLOR)"; \
 else  \
