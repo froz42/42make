@@ -1,3 +1,3 @@
-# cool-makefile
+# 42 Make
 Just messing with makefiles
 ![preview](https://github.com/tmatis/cool-makefile/raw/master/preview.gif)
