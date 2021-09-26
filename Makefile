@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/26 18:00:40 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/26 19:08:07 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ CC 		= clang++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 AUTHOR	= tmatis
 DATE	= 26/09/2021
+
+NOVISU 	= 0 # 1 = no progress bar usefull when tty is not available
 
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -85,7 +87,9 @@ $(RUN_CMD); \
 if [ $$RESULT -ne 0 ]; then \
 	printf "%b\n" "$(ERROR_COLOR)[✖]$(NO_COLOR)"; \
 	rm -rf .files_changed; \
-	clear; \
+	if [ $(NOVISU) -eq 0 ]; then \
+		clear; \
+	fi; \
 elif [ -s $@.log ]; then \
 	printf "%b\n" "$(WARN_COLOR)[⚠]$(NO_COLOR)"; \
 else  \
@@ -140,32 +144,34 @@ define draw_bar
 endef
 
 define display_progress_bar
-	line=`bash -c 'oldstty=$$(stty -g); stty raw -echo min 0; tput u7 > /dev/tty; IFS=";" read -r -d R -a pos; stty $$oldstty; row=$$(($${pos[0]:2} - 1)); echo $$row'`; \
-	max_line=`tput lines`; \
-	((max_line=$$max_line-2));\
-	new_line=0; \
-	tput sc; \
-	i=0; \
-	while [ $$i -lt 60 ]; do \
-		printf " "; \
-		((i=$$i+1)); \
-	done; \
-	tput rc; \
-	if [ $$line -gt $$max_line ]; then \
-		new_line=1; \
-		echo ; \
-	else \
-		((line=$$line+1));\
-	fi; \
-	tput sc; \
-	tput cup $$line; \
-	$(draw_bar) \
-	if [ $$new_line -eq 1 ]; then \
-		((line=$$line-1));\
-		tput cup $$line; \
-	else \
+	if [ $(NOVISU) -eq 0 ]; then \
+		line=`bash -c 'oldstty=$$(stty -g); stty raw -echo min 0; tput u7 > /dev/tty; IFS=";" read -r -d R -a pos; stty $$oldstty; row=$$(($${pos[0]:2} - 1)); echo $$row'`; \
+		max_line=`tput lines`; \
+		((max_line=$$max_line-2));\
+		new_line=0; \
+		tput sc; \
+		i=0; \
+		while [ $$i -lt 60 ]; do \
+			printf " "; \
+			((i=$$i+1)); \
+		done; \
 		tput rc; \
-	fi;
+		if [ $$line -gt $$max_line ]; then \
+			new_line=1; \
+			echo ; \
+		else \
+			((line=$$line+1));\
+		fi; \
+		tput sc; \
+		tput cup $$line; \
+		$(draw_bar) \
+		if [ $$new_line -eq 1 ]; then \
+			((line=$$line-1));\
+			tput cup $$line; \
+		else \
+			tput rc; \
+		fi; \
+	fi
 endef
 
 ################################################################################
