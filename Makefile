@@ -20,6 +20,7 @@ CC 		= clang++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
 AUTHOR	= tmatis
 DATE	= 26/09/2021
+HASH	= 
 
 NOVISU 	= 0 # 1 = no progress bar usefull when tty is not available
 
@@ -79,6 +80,13 @@ else ifeq ($(detected_OS),Linux)
 else
 	RUN_CMD = $(1) 2> $@.log; \
 				RESULT=$$?
+endif
+
+IS_GIT_DIRECTORY := $(shell git rev-parse --is-inside-work-tree 2>/dev/null)
+ifeq ($(IS_GIT_DIRECTORY),true)
+	AUTHOR	:= $(shell git log --format='%aN' | sort -u | head -c -1 | sed -z 's/\n/, /g')
+	DATE	:= $(shell git log -1 --date=format:"%Y/%m/%d %T" --format="%ad")
+	HASH	:= $(shell git rev-parse --short HEAD)
 endif
 
 define run_and_test
@@ -190,7 +198,11 @@ header:
 	@echo "     \___  |./ /___| |  | | (_| |   <  __/"
 	@echo "         |_/\_____/\_|  |_/\__,_|_|\_\___| v2"
 	@echo
+ifneq ($(HASH),)
+	@printf "%b" "$(OBJ_COLOR)Name:	$(WARN_COLOR)$(NAME)@$(HASH)\n"
+else
 	@printf "%b" "$(OBJ_COLOR)Name:	$(WARN_COLOR)$(NAME)\n"
+endif
 	@printf "%b" "$(OBJ_COLOR)Author:	$(WARN_COLOR)$(AUTHOR)\n"
 	@printf "%b" "$(OBJ_COLOR)Date: 	$(WARN_COLOR)$(DATE)\n\033[m"
 	@printf "%b" "$(OBJ_COLOR)CC: 	$(WARN_COLOR)$(CC)\n\033[m"
