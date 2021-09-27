@@ -1,5 +1,6 @@
 # 42 Make
-Just messing with makefiles contributions are welcomes
+Just messing with makefiles.
+Contributions are welcome
 
 ![preview](https://github.com/tmatis/cool-makefile/raw/master/preview.gif)
 
