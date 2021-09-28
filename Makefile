@@ -18,6 +18,7 @@
 NAME	= maketest
 CC 		= clang++
 CFLAGS	= -Wall -Werror -Wextra -std=c++98
+DFLAGS	= -MMD -MF $(@:.o=.d)
 AUTHOR	= tmatis
 DATE	= 26/09/2021
 HASH	= 
@@ -48,7 +49,8 @@ SHELL := /bin/bash
 
 OBJS				= $(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.o})
 OBJ_MAIN			= $(addprefix objs/, ${MAIN:$(FILE_EXTENSION)=.o})
-
+DEPS				= $(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.d})
+DEPS_MAIN			= $(addprefix objs/, ${SRCS:$(FILE_EXTENSION)=.d})
 
 ################################################################################
 #                                 Makefile logic                               #
@@ -210,9 +212,10 @@ endif
 	@echo
 
 
+-include $(DEPS)
 $(NAME):	${OBJS} ${OBJ_MAIN}
 			@$(call display_progress_bar)
-			@$(call run_and_test,$(CC) $(CFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN})
+			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN})
 
 setup:
 	@$(call save_files_changed)
@@ -220,7 +223,7 @@ setup:
 objs/%.o: 	$(SRCS_PATH)/%$(FILE_EXTENSION)
 			@mkdir -p $(dir $@)
 			@$(call display_progress_bar)
-			@$(call run_and_test,$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDE_PATH))
+			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@ -I$(INCLUDE_PATH))
 
 clean:		header
 			@rm -rf objs objs_tests
