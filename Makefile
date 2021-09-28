@@ -82,8 +82,7 @@ else
 				RESULT=$$?
 endif
 
-IS_GIT_DIRECTORY := $(shell git rev-parse --is-inside-work-tree 2>/dev/null)
-ifeq ($(IS_GIT_DIRECTORY),true)
+ifeq ($(shell git rev-parse HEAD &>/dev/null; echo $$?),0)
 	AUTHOR	:= $(shell git log --format='%aN' | sort -u | head -c -1 | sed -z 's/\n/, /g')
 	DATE	:= $(shell git log -1 --date=format:"%Y/%m/%d %T" --format="%ad")
 	HASH	:= $(shell git rev-parse --short HEAD)
