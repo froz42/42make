@@ -1,10 +1,19 @@
 # 42 Make
-Just messing with makefiles.
+Just messing with Makefiles.
 Contributions are welcome
 
 ![preview](https://github.com/tmatis/cool-makefile/raw/master/preview.gif)
 
-## how to use ?
+## Features
+
+ - [x]  Cool header with important infos (git aware) ℹ️
+ - [x]  Colored errors and outputs 📚
+ - [x]  Beautiful loading bar  🕓
+ - [x]  No relink 🙅‍♂️
+ - [x]  Easy to configure and customize 🔨
+ - [x] 42's Makefile norm ✨
+
+## How to use ?
 
     wget https://raw.githubusercontent.com/tmatis/42make/master/Makefile
 
