@@ -13,7 +13,7 @@ ORANGE='\033[0;33m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 NC='\033[0m' # No Color
-MAKEFILE_TEMPLATE="https://raw.githubusercontent.com/tmatis/42make/help_tool/Makefile.template"
+MAKEFILE_TEMPLATE="https://raw.githubusercontent.com/tmatis/42make/master/Makefile.template"
 
 printf "$CYAN${BOLD}This script will help you setup the Makefile and project files.\n\n$NC"
 
