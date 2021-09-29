@@ -12,6 +12,7 @@ Contributions are welcome
  - [x]  No relink 🙅‍♂️
  - [x]  Easy to configure and customize 🔨
  - [x] 42's Makefile norm ✨
+ - [x] Recompiling needed files when header file is edited 🔥
 
 ## How to use ?
 
