@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/29 18:29:06 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/29 18:55:52 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,9 @@ NOVISU 	= 0 # 1 = no progress bar usefull when tty is not available
 
 FILE_EXTENSION	= file_extension_template
 
-SRCS_PATH		= srcs_path_template
+SRCS_PATH		= ./srcs_path_template
 
-INCLUDE_PATH	= include_path_template
+INCLUDE_PATH	= ./include_path_template
 
 SRCS			= src_template
 

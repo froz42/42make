@@ -13,6 +13,7 @@ ORANGE='\033[0;33m'
 BOLD='\033[1m'
 UNDERLINE='\033[4m'
 NC='\033[0m' # No Color
+MAKEFILE_TEMPLATE="https://raw.githubusercontent.com/tmatis/42make/help_tool/Makefile.template"
 
 printf "$CYAN${BOLD}This script will help you setup the Makefile and project files.\n\n$NC"
 
@@ -81,17 +82,21 @@ if [ -z "$FLAGS" ]; then
 fi
 
 printf "Enter the project's ${UNDERLINE}source directory$NC: \
-(default is ${BOLD}./src$NC leave empty if wanted) \n $CYAN$BOLD>>> $NC";
+(default is ${BOLD}src$NC leave empty if wanted) \n $CYAN$BOLD>>> $NC";
 read SRC_DIR;
 if [ -z "$SRC_DIR" ]; then
-	SRC_DIR="./src";
+	SRC_DIR="src";
+else
+	SRC_DIR=`echo $SRC_DIR | sed 's/\.\///'`;
 fi
 
 printf "Enter the project's ${UNDERLINE}include directory$NC: \
-(default is ${BOLD}./src$NC leave empty if wanted or unused) \n $CYAN$BOLD>>> $NC";
+(default is ${BOLD}src$NC leave empty if wanted or unused) \n $CYAN$BOLD>>> $NC";
 read INC_DIR;
 if [ -z "$INC_DIR" ]; then
-	INC_DIR="./src";
+	INC_DIR="src";
+else
+	INC_DIR=`echo $INC_DIR | sed 's/\.\///'`;
 fi
 
 printf "Do you want to create a repo with all these informations?\
@@ -111,8 +116,25 @@ if [ -z "$CREATE_REPO" ]; then
 	CREATE_REPO="y";
 fi
 
+DATE="$(date +%d\\/%m\\/%Y)"
+
 if [ $CREATE_REPO = "y" ]; then
-	printf "Creating project's directory...\n";
+	mkdir $PROJECT_DIR;
+	cd $PROJECT_DIR;
+	mkdir -p $SRC_DIR;
+	mkdir -p $INC_DIR;
+	echo "int main(void) {}" > $SRC_DIR/main.cpp;
+	curl -s $MAKEFILE_TEMPLATE | sed 's/name_template/'"$PROJECT_NAME"'/g' \
+							| sed 's/author_template/'"$PROJECT_AUTHOR"'/g' \
+							| sed 's/file_extension_template/'"$FILE_EXTENSION"'/g' \
+							| sed 's/cc_template/'"$CC"'/g' \
+							| sed 's/cflags_template/'"$FLAGS"'/g' \
+							| sed 's/src_template//g' \
+							| sed 's/main_template/'"main.cpp"'/g' \
+							| sed 's/srcs_path_template/'"$SRC_DIR"'/g' \
+							| sed 's/include_path_template/'"$INC_DIR"'/g' \
+							| sed 's/date_template/'"$DATE"'/g' \
+							> Makefile;
 else
 	printf "Exiting...\n";
 	exit 0;
