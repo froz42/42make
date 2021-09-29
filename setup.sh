@@ -107,8 +107,13 @@ $CYAN$BOLD>>> ${NC}include directory: ${BOLD}$INC_DIR$NC\n$NC
 $CYAN$BOLD[y/n] >>> $NC";
 
 read CREATE_REPO;
-if [ ! $CREATE_REPO = "n" ]; then
-	printf "Creating repo...\n";
+if [ -z "$CREATE_REPO" ]; then
+	CREATE_REPO="y";
+fi
+
+if [ $CREATE_REPO = "y" ]; then
+	printf "Creating project's directory...\n";
 else
-	printf "Aborting...\n";
+	printf "Exiting...\n";
+	exit 0;
 fi
