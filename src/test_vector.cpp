@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 13:23:22 by tmatis            #+#    #+#             */
-/*   Updated: 2021/09/26 16:09:28 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/09/29 14:39:38 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -380,6 +380,7 @@ void test_push_back()
 	for (int i = 0; i < 100000; i++)
 		v1.push_back(i);
 	module_foot();
+
 
 	module_head("vector::push_back (value)");
 	std::cout << string_vector(v1) << std::endl;
