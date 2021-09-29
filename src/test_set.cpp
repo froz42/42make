@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 16:14:09 by tmatis            #+#    #+#             */
-/*   Updated: 2021/09/19 17:12:12 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/09/29 14:17:19 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <sstream>
 
 template <class T>
+
 std::string string_set(TESTED_NAMESPACE::set<T> &s)
 {
 	std::ostringstream ss;

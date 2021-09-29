@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/29 14:12:33 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/29 14:17:09 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ endef
 
 define save_files_changed
 	FILE_CPP=`echo $(SRCS) $(MAIN)`; \
-	FILE_OBJ=`find objs -type f -name '*.o' | sed 's/objs\///'`; \
+	FILE_OBJ=`find objs -type f -name '*.o' 2>/dev/null | sed 's/objs\///'`; \
 	TO_COMPILE=`echo $$FILE_CPP | wc -w`; \
 	for FILE in $$FILE_CPP; do \
 		for OBJ in $$FILE_OBJ; do \
