@@ -6,7 +6,7 @@
 #    By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/14 10:00:31 by tmatis            #+#    #+#              #
-#    Updated: 2021/09/29 14:17:09 by tmatis           ###   ########.fr        #
+#    Updated: 2021/09/29 14:42:23 by tmatis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,8 +117,18 @@ define save_files_changed
 		for OBJ in $$FILE_OBJ; do \
 			if [ $${FILE%$(FILE_EXTENSION)} = $${OBJ%.o} ]; then \
 				if [ $(SRCS_PATH)/$$FILE -ot objs/$$OBJ ]; then \
-					((TO_COMPILE=$$TO_COMPILE-1)); \
-					break; \
+					FILE_DEP=`echo objs/$$OBJ | sed 's/\.o/\.d/'`; \
+					HEAD_FILES=`< $$FILE_DEP xargs | grep -oh "\w*.h\w*"`; \
+					RECOMPILE=0; \
+					for HEAD in $$HEAD_FILES; do \
+						if [ $(SRCS_PATH)/$$HEAD -nt objs/$$OBJ ]; then \
+							RECOMPILE=1; \
+							break; \
+						fi; \
+					done; \
+					if [ $$RECOMPILE -eq 0 ]; then \
+						((TO_COMPILE=$$TO_COMPILE-1)); \
+					fi;\
 				fi; \
 			fi; \
 		done; \
@@ -211,7 +221,7 @@ endif
 	@echo
 
 
--include $(DEPS)
+-include $(DEPS) $(DEPS_MAIN)
 $(NAME):	${OBJS} ${OBJ_MAIN}
 			@$(call display_progress_bar)
 			@$(call run_and_test,$(CC) $(CFLAGS) $(DFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN})
