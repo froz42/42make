@@ -6,7 +6,7 @@
 /*   By: tmatis <tmatis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 13:17:42 by tmatis            #+#    #+#             */
-/*   Updated: 2021/09/29 14:43:28 by tmatis           ###   ########.fr       */
+/*   Updated: 2021/09/29 14:51:59 by tmatis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ void test_pair(void);
 void test_stack(void);
 void test_map(void);
 void test_set(void);
-
 
 #endif
