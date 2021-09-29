@@ -18,7 +18,7 @@ Contributions are welcome
 ## How to use ?
 Execute:
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/tmatis/42make/master/setup.sh)
+bash -c 'bash <(curl -s https://raw.githubusercontent.com/tmatis/42make/master/setup.sh)'
 ```
 And follow instructions.
 
