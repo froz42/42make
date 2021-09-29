@@ -1,3 +1,4 @@
+
 # 42 Make
 Just messing with Makefiles.
 Contributions are welcome
@@ -15,19 +16,31 @@ Contributions are welcome
  - [x] Recompiling needed files when header file is edited 🔥
 
 ## How to use ?
+Execute:
+```bash
+bash <(curl -s https://raw.githubusercontent.com/tmatis/42make/master/setup.sh)
+```
+And follow instructions.
 
-    wget https://raw.githubusercontent.com/tmatis/42make/master/Makefile
+OR
 
-And configure these field:
+Just download the Makefile and customize field yourself.
+```bash
+curl https://raw.githubusercontent.com/tmatis/42make/master/Makefile --output Makefile
+```
+You can customize sources files here :
 
-![image](https://user-images.githubusercontent.com/54767855/134815283-4f02c62b-a05d-4c2a-a13e-febe11588512.png)
+![image](https://user-images.githubusercontent.com/54767855/135317248-5d0f9e68-470a-4e49-9c36-1f71823149e7.png)
+
 
 ## if you have tty error on workflows
-	add NOVISU=1 as argument to your makefile:
+```bash
+#add NOVISU=1 as argument to your makefile:
 
-	make NOVISU=1 
-
+make NOVISU=1 
+```
 
 ## if you want to list all .cpp file
-
-    find . -type f | grep '.cpp' 
+```bash
+find . -type f | grep '.cpp' 
+```
