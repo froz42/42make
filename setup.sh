@@ -113,7 +113,7 @@ fi
 DATE="$(date +%d\\/%m\\/%Y)"
 
 if [ $CREATE_REPO = "y" ]; then
-	mkdir $PROJECT_DIR;
+	mkdir -p $PROJECT_DIR;
 	cd $PROJECT_DIR;
 	mkdir -p $SRC_DIR;
 	mkdir -p $INC_DIR;
