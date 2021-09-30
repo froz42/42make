@@ -124,7 +124,7 @@ if [ $CREATE_REPO = "y" ]; then
 							| sed 's/cc_template/'"$CC"'/g' \
 							| sed 's/cflags_template/'"$FLAGS"'/g' \
 							| sed 's/src_template//g' \
-							| sed 's/main_template/'"main.${FILE_EXTENSION}"'/g' \
+							| sed 's/main_template/'"main${FILE_EXTENSION}"'/g' \
 							| sed 's/srcs_path_template/'"$SRC_DIR"'/g' \
 							| sed 's/include_path_template/'"$INC_DIR"'/g' \
 							| sed 's/date_template/'"$DATE"'/g' \
