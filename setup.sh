@@ -117,7 +117,7 @@ if [ $CREATE_REPO = "y" ]; then
 	cd $PROJECT_DIR;
 	mkdir -p $SRC_DIR;
 	mkdir -p $INC_DIR;
-	echo "int main(void) {}" > $SRC_DIR/main.${FILE_EXTENSION};
+	echo "int main(void) {}" > $SRC_DIR/main${FILE_EXTENSION};
 	curl -s $MAKEFILE_TEMPLATE | sed 's/name_template/'"$PROJECT_NAME"'/g' \
 							| sed 's/author_template/'"$PROJECT_AUTHOR"'/g' \
 							| sed 's/file_extension_template/'"$FILE_EXTENSION"'/g' \
