@@ -33,12 +33,6 @@ if [ -z "$PROJECT_DIR" ]; then
 	PROJECT_DIR=$PROJECT_NAME;
 fi
 
-if [ -d "$PROJECT_DIR" ]; then
-	printf "[${RED}ERROR$NC] Project's directory already exists.\n";
-	exit 1;
-	# todo implement a way to overwrite the project directory
-fi
-
 printf "Enter the project's ${UNDERLINE}author$NC: \
 (default is ${BOLD}$USER$NC leave empty if wanted) \n $CYAN$BOLD>>> $NC";
 read PROJECT_AUTHOR;
