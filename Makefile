@@ -96,7 +96,7 @@ if [ $$RESULT -ne 0 ]; then \
 	printf "%b\n" "$(ERROR_COLOR)[✖]$(NO_COLOR)"; \
 	rm -rf .files_changed; \
 	if [ $(NOVISU) -eq 0 ]; then \
-		clear; \
+		echo; \
 	fi; \
 elif [ -s $@.log ]; then \
 	printf "%b\n" "$(WARN_COLOR)[⚠]$(NO_COLOR)"; \
