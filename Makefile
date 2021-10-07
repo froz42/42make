@@ -85,6 +85,7 @@ else
 endif
 
 ifeq ($(shell git rev-parse HEAD &>/dev/null; echo $$?),0)
+	AUTHOR	:= $(shell git log --format='%aN' | sort -u | tail -r | awk '{printf "%s, ", $$0}' | rev | cut -c 3- | rev)
 	DATE	:= $(shell git log -1 --date=format:"%Y/%m/%d %T" --format="%ad")
 	HASH	:= $(shell git rev-parse --short HEAD)
 endif
